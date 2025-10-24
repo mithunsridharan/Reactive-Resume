@@ -47,6 +47,7 @@ import { Popover, PopoverContent } from "./popover";
 import { Skeleton } from "./skeleton";
 import { Toggle } from "./toggle";
 import { Tooltip } from "./tooltip";
+import { ScrollArea } from "./scroll-area";
 
 const InsertImageFormSchema = z.object({
   src: z.string(),
@@ -151,7 +152,6 @@ const Toolbar = ({ editor }: { editor: Editor }) => {
           type="button"
           pressed={editor.isActive("bold")}
           disabled={!editor.can().chain().toggleBold().run()}
-          data-state={editor.isActive("bold") ? "on" : "off"}
           onPressedChange={() => editor.chain().focus().toggleBold().run()}
         >
           <TextBIcon />
@@ -164,7 +164,6 @@ const Toolbar = ({ editor }: { editor: Editor }) => {
           type="button"
           pressed={editor.isActive("italic")}
           disabled={!editor.can().chain().focus().toggleItalic().run()}
-          data-state={editor.isActive("italic") ? "on" : "off"}
           onPressedChange={() => editor.chain().focus().toggleItalic().run()}
         >
           <TextItalicIcon />
@@ -177,7 +176,6 @@ const Toolbar = ({ editor }: { editor: Editor }) => {
           type="button"
           pressed={editor.isActive("strike")}
           disabled={!editor.can().chain().focus().toggleStrike().run()}
-          data-state={editor.isActive("strike") ? "on" : "off"}
           onPressedChange={() => editor.chain().focus().toggleStrike().run()}
         >
           <TextStrikethroughIcon />
@@ -190,7 +188,6 @@ const Toolbar = ({ editor }: { editor: Editor }) => {
           type="button"
           pressed={editor.isActive("underline")}
           disabled={!editor.can().chain().focus().toggleUnderline().run()}
-          data-state={editor.isActive("underline") ? "on" : "off"}
           onPressedChange={() => editor.chain().focus().toggleUnderline().run()}
         >
           <TextAUnderlineIcon />
@@ -203,7 +200,6 @@ const Toolbar = ({ editor }: { editor: Editor }) => {
           type="button"
           pressed={editor.isActive("highlight")}
           disabled={!editor.can().chain().focus().toggleHighlight().run()}
-          data-state={editor.isActive("highlight") ? "on" : "off"}
           onPressedChange={() => editor.chain().focus().toggleHighlight().run()}
         >
           <HighlighterCircleIcon />
@@ -222,7 +218,6 @@ const Toolbar = ({ editor }: { editor: Editor }) => {
           type="button"
           pressed={editor.isActive("code")}
           disabled={!editor.can().chain().focus().toggleCode().run()}
-          data-state={editor.isActive("code") ? "on" : "off"}
           onPressedChange={() => editor.chain().focus().toggleCode().run()}
         >
           <CodeIconImport />
@@ -235,7 +230,6 @@ const Toolbar = ({ editor }: { editor: Editor }) => {
           type="button"
           pressed={editor.isActive("codeBlock")}
           disabled={!editor.can().chain().focus().toggleCodeBlock().run()}
-          data-state={editor.isActive("codeBlock") ? "on" : "off"}
           onPressedChange={() => editor.chain().focus().toggleCodeBlock().run()}
         >
           <CodeBlockIconImport />
@@ -248,7 +242,6 @@ const Toolbar = ({ editor }: { editor: Editor }) => {
           type="button"
           pressed={editor.isActive("heading", { level: 1 })}
           disabled={!editor.can().chain().focus().toggleHeading({ level: 1 }).run()}
-          data-state={editor.isActive("heading", { level: 1 }) ? "on" : "off"}
           onPressedChange={() => editor.chain().focus().toggleHeading({ level: 1 }).run()}
         >
           <TextHOneIcon />
@@ -261,7 +254,6 @@ const Toolbar = ({ editor }: { editor: Editor }) => {
           type="button"
           pressed={editor.isActive("heading", { level: 2 })}
           disabled={!editor.can().chain().focus().toggleHeading({ level: 2 }).run()}
-          data-state={editor.isActive("heading", { level: 2 }) ? "on" : "off"}
           onPressedChange={() => editor.chain().focus().toggleHeading({ level: 2 }).run()}
         >
           <TextHTwoIcon />
@@ -274,7 +266,6 @@ const Toolbar = ({ editor }: { editor: Editor }) => {
           type="button"
           pressed={editor.isActive("heading", { level: 3 })}
           disabled={!editor.can().chain().focus().toggleHeading({ level: 3 }).run()}
-          data-state={editor.isActive("heading", { level: 3 }) ? "on" : "off"}
           onPressedChange={() => editor.chain().focus().toggleHeading({ level: 3 }).run()}
         >
           <TextHThreeIcon />
@@ -286,7 +277,6 @@ const Toolbar = ({ editor }: { editor: Editor }) => {
           size="sm"
           type="button"
           pressed={editor.isActive("paragraph")}
-          data-state={editor.isActive("paragraph") ? "on" : "off"}
           onPressedChange={() => editor.chain().focus().setParagraph().run()}
         >
           <ParagraphIconImport />
@@ -299,7 +289,6 @@ const Toolbar = ({ editor }: { editor: Editor }) => {
           type="button"
           pressed={editor.isActive({ textAlign: "left" })}
           disabled={!editor.can().chain().focus().setTextAlign("left").run()}
-          data-state={editor.isActive({ textAlign: "left" }) ? "on" : "off"}
           onPressedChange={() => editor.chain().focus().setTextAlign("left").run()}
         >
           <TextAlignLeftIcon />
@@ -312,7 +301,6 @@ const Toolbar = ({ editor }: { editor: Editor }) => {
           type="button"
           pressed={editor.isActive({ textAlign: "center" })}
           disabled={!editor.can().chain().focus().setTextAlign("center").run()}
-          data-state={editor.isActive({ textAlign: "center" }) ? "on" : "off"}
           onPressedChange={() => editor.chain().focus().setTextAlign("center").run()}
         >
           <TextAlignCenterIcon />
@@ -325,7 +313,6 @@ const Toolbar = ({ editor }: { editor: Editor }) => {
           type="button"
           pressed={editor.isActive({ textAlign: "right" })}
           disabled={!editor.can().chain().focus().setTextAlign("right").run()}
-          data-state={editor.isActive({ textAlign: "right" }) ? "on" : "off"}
           onPressedChange={() => editor.chain().focus().setTextAlign("right").run()}
         >
           <TextAlignRightIcon />
@@ -338,7 +325,6 @@ const Toolbar = ({ editor }: { editor: Editor }) => {
           type="button"
           pressed={editor.isActive({ textAlign: "justify" })}
           disabled={!editor.can().chain().focus().setTextAlign("justify").run()}
-          data-state={editor.isActive({ textAlign: "justify" }) ? "on" : "off"}
           onPressedChange={() => editor.chain().focus().setTextAlign("justify").run()}
         >
           <TextAlignJustifyIcon />
@@ -351,7 +337,6 @@ const Toolbar = ({ editor }: { editor: Editor }) => {
           type="button"
           pressed={editor.isActive("bulletList")}
           disabled={!editor.can().chain().focus().toggleBulletList().run()}
-          data-state={editor.isActive("bulletList") ? "on" : "off"}
           onPressedChange={() => editor.chain().focus().toggleBulletList().run()}
         >
           <ListBulletsIcon />
@@ -364,7 +349,6 @@ const Toolbar = ({ editor }: { editor: Editor }) => {
           type="button"
           pressed={editor.isActive("orderedList")}
           disabled={!editor.can().chain().focus().toggleOrderedList().run()}
-          data-state={editor.isActive("orderedList") ? "on" : "off"}
           onPressedChange={() => editor.chain().focus().toggleOrderedList().run()}
         >
           <ListNumbersIcon />
@@ -491,7 +475,7 @@ export const RichInput = forwardRef<Editor, RichInputProps>(
       editorProps: {
         attributes: {
           class: cn(
-            "prose prose-sm prose-zinc max-h-[200px] max-w-none overflow-y-scroll dark:prose-invert focus:outline-none [&_*]:my-2",
+            "prose prose-sm prose-zinc max-h-[200px] max-w-none dark:prose-invert focus:outline-none [&_*]:my-2",
             editorClassName,
           ),
         },
@@ -514,16 +498,18 @@ export const RichInput = forwardRef<Editor, RichInputProps>(
       <div>
         {!hideToolbar && <Toolbar editor={editor} />}
 
-        <EditorContent
-          editor={editor}
-          className={cn(
-            "grid min-h-[160px] w-full rounded-sm border bg-transparent px-3 py-2 text-sm placeholder:opacity-80 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary disabled:cursor-not-allowed disabled:opacity-50",
-            hideToolbar && "pt-2",
-            className,
-          )}
-          {...props}
-        />
-
+        <ScrollArea orientation="vertical" className="rounded-sm border px-3 py-2">
+          <EditorContent
+            editor={editor}
+            className={cn(
+              "grid min-h-[160px] w-full bg-transparent text-sm placeholder:opacity-80 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary disabled:cursor-not-allowed disabled:opacity-50",
+              hideToolbar && "pt-2",
+              className,
+            )}
+            {...props}
+          />
+        </ScrollArea>
+        
         {footer?.(editor)}
       </div>
     );
