@@ -118,6 +118,9 @@ export const sampleResume: ResumeData = {
             label: "",
             href: "https://creativesolutions.inc/",
           },
+          // workType: "onsite",
+          workType: "On-Site",
+          employmentType: "Full-Time",
         },
         {
           id: "r6543lil53ntrxmvel53gbtm",
@@ -132,6 +135,8 @@ export const sampleResume: ResumeData = {
             label: "",
             href: "https://techadvancers.com/",
           },
+          workType: "Remote",
+          employmentType: "none",
         },
       ],
     },

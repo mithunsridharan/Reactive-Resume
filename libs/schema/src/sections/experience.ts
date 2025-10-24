@@ -2,6 +2,18 @@ import { z } from "zod";
 
 import { defaultItem, defaultUrl, itemSchema, urlSchema } from "../shared";
 
+export const workTypeEnum = z.enum(["On-Site", "Remote", "Hybrid", "none"]);
+export const employmentTypeEnum = z.enum([
+  "Full-Time",
+  "Part-Time",
+  "Internship",
+  "Contract",
+  "Freelance",
+  "Temporary",
+  "Volunteer",
+  "none",
+]);
+
 // Schema
 export const experienceSchema = itemSchema.extend({
   company: z.string().min(1),
@@ -10,6 +22,8 @@ export const experienceSchema = itemSchema.extend({
   date: z.string(),
   summary: z.string(),
   url: urlSchema,
+  workType: workTypeEnum.optional(),
+  employmentType: employmentTypeEnum.optional(),
 });
 
 // Type
@@ -24,4 +38,6 @@ export const defaultExperience: Experience = {
   date: "",
   summary: "",
   url: defaultUrl,
+  workType: "none",
+  employmentType: "none",
 };

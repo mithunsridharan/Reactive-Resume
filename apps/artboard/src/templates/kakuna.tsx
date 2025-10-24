@@ -255,8 +255,24 @@ const Experience = () => {
             separateLinks={section.separateLinks}
             className="font-bold"
           />
-          <div>{item.position}</div>
-          <div>{item.location}</div>
+          <div className="flex items-center gap-2">
+            <span>{item.position}</span>
+            {item.employmentType && item.employmentType !== "none" && (
+              <>
+                <span className="inline-block aspect-square h-1.5 rounded-full bg-primary" />
+                <span>{item.employmentType}</span>
+              </>
+            )}
+          </div>
+          <div className="flex items-center gap-2">
+            <span>{item.location}</span>
+            {item.workType && item.workType !== "none" && (
+              <>
+                <span className="inline-block aspect-square h-1.5 rounded-full bg-primary" />
+                <span>{item.workType}</span>
+              </>
+            )}
+          </div>
           <div className="font-bold">{item.date}</div>
         </div>
       )}
