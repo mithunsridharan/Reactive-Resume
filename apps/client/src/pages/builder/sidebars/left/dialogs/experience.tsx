@@ -31,6 +31,7 @@ import { SectionDialog } from "../sections/shared/section-dialog";
 import { URLInput } from "../sections/shared/url-input";
 
 const formSchema = experienceSchema;
+ const MAX_DESCRIPTION_LENGTH = 49;
 
 type FormValues = z.infer<typeof formSchema>;
 
@@ -161,6 +162,35 @@ export const ExperienceDialog = () => {
                     </SelectGroup>
                   </SelectContent>
                 </Select>
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          name="companyDescription"
+          control={form.control}
+          render={({ field }) => (
+            <FormItem className="sm:col-span-2">
+              <FormLabel>
+                <div className="sm:col-span-2">
+                  <span>{t`Company Description`}</span>
+                  <span className="text-muted-foreground text-sm">
+                    ({field.value?.length ?? 0} / {MAX_DESCRIPTION_LENGTH})
+                  </span>
+                </div>
+              </FormLabel>
+              <FormControl>
+                <Input
+                  {...field}
+                  maxLength={MAX_DESCRIPTION_LENGTH}
+                  onChange={(e) => {
+                    if (e.target.value.length <= MAX_DESCRIPTION_LENGTH) {
+                      field.onChange(e.target.value);
+                    }
+                  }}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>

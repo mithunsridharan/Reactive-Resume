@@ -23,6 +23,7 @@ export const experienceSchema = itemSchema.extend({
   summary: z.string(),
   url: urlSchema,
   workType: workTypeEnum.optional(),
+  companyDescription: z.string().optional(),
   employmentType: employmentTypeEnum.optional(),
 });
 
@@ -37,6 +38,7 @@ export const defaultExperience: Experience = {
   location: "",
   date: "",
   summary: "",
+  companyDescription: "",
   url: defaultUrl,
   workType: "none",
   employmentType: "none",

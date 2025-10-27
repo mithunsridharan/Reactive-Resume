@@ -263,6 +263,7 @@ const Experience = () => {
               className="font-bold"
             />
             <div className="flex items-center gap-2">
+              <div>{item.companyDescription}</div>
               <span>{item.position}</span>
               {item.employmentType && item.employmentType !== "none" && (
                 <>
@@ -547,7 +548,7 @@ const mapSectionToComponent = (section: SectionKey) => {
     case "education": {
       return <Education />;
     }
-    
+
     case "summary": {
       return <Summary />;
     }
