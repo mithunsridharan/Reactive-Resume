@@ -169,6 +169,20 @@ export const ExperienceDialog = () => {
         />
 
         <FormField
+          name="url"
+          control={form.control}
+          render={({ field }) => (
+            <FormItem className="sm:col-span-2">
+              <FormLabel>{t`Website`}</FormLabel>
+              <FormControl>
+                <URLInput {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
           name="companyDescription"
           control={form.control}
           render={({ field }) => (
@@ -198,13 +212,55 @@ export const ExperienceDialog = () => {
         />
 
         <FormField
-          name="url"
+          name="overview"
           control={form.control}
           render={({ field }) => (
             <FormItem className="sm:col-span-2">
-              <FormLabel>{t`Website`}</FormLabel>
+              <FormLabel>{t`Overview`}</FormLabel>
               <FormControl>
-                <URLInput {...field} />
+                <Input {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          name="industries"
+          control={form.control}
+          render={({ field }) => (
+            <FormItem className="sm:col-span-2">
+              <FormLabel>{t`Industries`}</FormLabel>
+              <FormControl>
+                <Input {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          name="specialities"
+          control={form.control}
+          render={({ field }) => (
+            <FormItem className="sm:col-span-2">
+              <FormLabel>{t`Specialities`}</FormLabel>
+              <FormControl>
+                <Input {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          name="tags"
+          control={form.control}
+          render={({ field }) => (
+            <FormItem className="sm:col-span-2">
+              <FormLabel>{t`Tags`}</FormLabel>
+              <FormControl>
+                <Input {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>

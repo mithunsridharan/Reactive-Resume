@@ -256,9 +256,8 @@ const Experience = () => {
               separateLinks={section.separateLinks}
               className="font-bold"
             />
+            <span>{item.position}</span>
             <div className="flex items-center gap-2">
-              <div>{item.companyDescription}</div>
-              <span>{item.position}</span>
               {item.employmentType && item.employmentType !== "none" && (
                 <>
                   <span className="inline-block aspect-square h-1.5 rounded-full bg-primary" />
@@ -280,6 +279,8 @@ const Experience = () => {
               <span>{item.location}</span>
             </div>
           </div>
+
+          <div>{item.companyDescription}</div>
         </div>
       )}
     </Section>
