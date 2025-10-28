@@ -187,14 +187,8 @@ export const ExperienceDialog = () => {
           control={form.control}
           render={({ field }) => (
             <FormItem className="sm:col-span-2">
-              <FormLabel>
-                <div className="sm:col-span-2">
-                  <span>{t`Company Description`}</span>
-                  <span className="text-muted-foreground text-sm">
-                    ({field.value?.length ?? 0} / {MAX_DESCRIPTION_LENGTH})
-                  </span>
-                </div>
-              </FormLabel>
+              <FormLabel>{t`Company Description`}</FormLabel>({field.value?.length ?? 0} /{" "}
+              {MAX_DESCRIPTION_LENGTH})
               <FormControl>
                 <Input
                   {...field}

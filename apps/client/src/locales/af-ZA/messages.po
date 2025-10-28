@@ -316,7 +316,11 @@ msgstr ""
 msgid "Columns"
 msgstr ""
 
-#: apps/client/src/pages/builder/sidebars/left/dialogs/experience.tsx:39
+#: apps/client/src/pages/builder/sidebars/left/dialogs/experience.tsx:52
+msgid "Company"
+msgstr ""
+
+#: apps/client/src/pages/builder/sidebars/left/dialogs/experience.tsx:52
 msgid "Company"
 msgstr ""
 
@@ -1819,4 +1823,3 @@ msgstr ""
 #: apps/client/src/pages/builder/_components/toolbar.tsx:118
 msgid "Zoom Out"
 msgstr ""
-

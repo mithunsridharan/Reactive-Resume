@@ -419,6 +419,47 @@ msgstr "Date"
 msgid "Date or Date Range"
 msgstr "Date or Date Range"
 
+msgctxt "Type of employment (e.g. Full-Time, Internship)"
+msgid "Employment Type"
+msgstr "Employment Type"
+
+msgctxt "Type of Work (e.g. Onsite, Remote)"
+msgid "Work Type"
+msgstr "Work Type"
+
+msgctxt "Type of Work (e.g. Onsite, Remote)"
+msgid "Full-Time"
+msgstr "Full-Time"
+
+msgctxt "Type of Work (e.g. Onsite, Remote)"
+msgid "Part-Time"
+msgstr "Part-Time"
+
+msgctxt "Type of Work (e.g. Onsite, Remote)"
+msgid "Internship"
+msgstr "Internship"
+
+msgctxt "Type of Work (e.g. Onsite, Remote)"
+msgid "Contract"
+msgstr "Contract"
+
+msgctxt "Type of Work (e.g. Onsite, Remote)"
+msgid "Freelance"
+msgstr "Freelance"
+
+msgctxt "Type of Work (e.g. Onsite, Remote)"
+msgid "Temporary"
+msgstr "Temporary"
+
+msgid "Volunteer"
+msgstr "Volunteer"
+
+msgid "none"
+msgstr "none"
+
+msgid "Overview"
+msgstr "Overview"
+
 #: apps/client/src/pages/builder/sidebars/left/sections/shared/section-dialog.tsx:137
 #: apps/client/src/pages/dashboard/resumes/_dialogs/resume.tsx:158
 #: apps/client/src/pages/dashboard/resumes/_layouts/grid/_components/resume-card.tsx:121
