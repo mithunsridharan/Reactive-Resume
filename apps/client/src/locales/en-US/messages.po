@@ -460,6 +460,18 @@ msgstr "none"
 msgid "Overview"
 msgstr "Overview"
 
+msgid "Industries"
+msgstr "Industries"
+
+msgid "Specialities"
+msgstr "Specialities"
+
+msgid "Tags"
+msgstr "Tags"
+
+msgid "Company Description"
+msgstr "Company Description"
+
 #: apps/client/src/pages/builder/sidebars/left/sections/shared/section-dialog.tsx:137
 #: apps/client/src/pages/dashboard/resumes/_dialogs/resume.tsx:158
 #: apps/client/src/pages/dashboard/resumes/_layouts/grid/_components/resume-card.tsx:121
