@@ -1211,6 +1211,9 @@ msgctxt "Position held at a company, for example, Software Engineer"
 msgid "Position"
 msgstr "Position"
 
+msgid "Enter the position you held at this company"
+msgstr "Enter a short description about the company"
+
 #: apps/client/src/pages/builder/sidebars/left/dialogs/volunteer.tsx:53
 msgid "Position"
 msgstr "Position"

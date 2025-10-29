@@ -87,7 +87,7 @@ export const ExperienceDialog = () => {
             <FormItem>
               <FormLabel>{t`Company`}</FormLabel>
               <FormControl>
-                <Input {...field} />
+                <Input {...field} placeholder={t`Enter the company name where you worked`} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -106,7 +106,7 @@ export const ExperienceDialog = () => {
                 })}
               </FormLabel>
               <FormControl>
-                <Input {...field} />
+                <Input {...field} placeholder={t`Enter the position you held at this company`} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -268,7 +268,8 @@ export const ExperienceDialog = () => {
               </FormLabel>
               <FormControl>
                 <Input
-                  {...field} placeholder={t`Enter a short description about the company`}
+                  {...field}
+                  placeholder={t`Enter a short description about the company`}
                   maxLength={MAX_DESCRIPTION_LENGTH}
                   onChange={(e) => {
                     if (e.target.value.length <= MAX_DESCRIPTION_LENGTH) {
@@ -289,7 +290,10 @@ export const ExperienceDialog = () => {
             <FormItem className="sm:col-span-2">
               <FormLabel>{t`Overview`}</FormLabel>
               <FormControl>
-                <Input {...field} placeholder={t`Enter a short overview about this work experience`} />
+                <Input
+                  {...field}
+                  placeholder={t`Enter a short overview about this work experience`}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
