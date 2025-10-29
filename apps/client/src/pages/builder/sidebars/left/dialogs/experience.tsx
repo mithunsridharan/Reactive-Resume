@@ -1,5 +1,6 @@
 /* eslint-disable lingui/no-single-variables-to-translate */
 import { zodResolver } from "@hookform/resolvers/zod";
+import { i18n } from "@lingui/core";
 import { t } from "@lingui/macro";
 import {
   defaultExperience,
@@ -26,12 +27,13 @@ import { useForm } from "react-hook-form";
 import type { z } from "zod";
 
 import { AiActions } from "@/client/components/ai-actions";
+import { getEmploymentTypeLabels, getWorkTypeLabels } from "@/client/locales/enums";
 
 import { SectionDialog } from "../sections/shared/section-dialog";
 import { URLInput } from "../sections/shared/url-input";
 
 const formSchema = experienceSchema;
- const MAX_DESCRIPTION_LENGTH = 49;
+const MAX_DESCRIPTION_LENGTH = 49;
 
 type FormValues = z.infer<typeof formSchema>;
 
@@ -110,23 +112,18 @@ export const ExperienceDialog = () => {
           control={form.control}
           render={({ field }) => (
             <FormItem className="">
-              <FormLabel>
-                {t({
-                  message: `Employment Type`,
-                  context: "Type of employment (e.g. Full-Time, Internship)",
-                })}
-              </FormLabel>
+              <FormLabel>{t`Employment Type`}</FormLabel>
               <FormControl>
                 <Select {...field} value={field.value ?? "none"} onValueChange={field.onChange}>
                   <SelectTrigger>
-                    <SelectValue placeholder="Select Employment Type" />
+                    <SelectValue placeholder={t`Select Employment Type`} />
                   </SelectTrigger>
                   <SelectContent>
                     <SelectGroup>
                       {employmentTypeEnum.options.map((type) => (
                         // eslint-disable-next-line react/jsx-no-comment-textnodes
                         <SelectItem key={type} value={type}>
-                          {t`${type}`}
+                          {i18n._(getEmploymentTypeLabels()[type])}
                         </SelectItem>
                       ))}
                     </SelectGroup>
@@ -134,6 +131,27 @@ export const ExperienceDialog = () => {
                 </Select>
               </FormControl>
               <FormMessage />
+
+              {/* Show input when "Other" is selected */}
+              {field.value === "other" && (
+                <FormField
+                  name="customEmploymentType"
+                  control={form.control}
+                  render={({ field }) => (
+                    <FormItem className="pt-2">
+                      <FormLabel>{t`Specify Other Employment Type`}</FormLabel>
+                      <FormControl>
+                        <Input
+                          {...field}
+                          value={typeof field.value === "string" ? field.value : ""}
+                          placeholder={t`Enter custom employment type`}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              )}
             </FormItem>
           )}
         />
@@ -143,20 +161,18 @@ export const ExperienceDialog = () => {
           control={form.control}
           render={({ field }) => (
             <FormItem className="">
-              <FormLabel>
-                {t({ message: `Work Type`, context: "Type of Work (e.g. Onsite, Remote)" })}
-              </FormLabel>
+              <FormLabel>{t`Work Type`}</FormLabel>
               <FormControl>
-                <Select {...field} value={field.value ?? "On-Site"} onValueChange={field.onChange}>
+                <Select {...field} value={field.value ?? "none"} onValueChange={field.onChange}>
                   <SelectTrigger>
-                    <SelectValue placeholder="Select Work Type" />
+                    <SelectValue placeholder={t`Select Work Type`} />
                   </SelectTrigger>
                   <SelectContent>
                     <SelectGroup>
                       {workTypeEnum.options.map((type) => (
                         // eslint-disable-next-line react/jsx-no-comment-textnodes
                         <SelectItem key={type} value={type}>
-                          {t`${type}`}
+                          {i18n._(getWorkTypeLabels()[type])}
                         </SelectItem>
                       ))}
                     </SelectGroup>
@@ -164,6 +180,27 @@ export const ExperienceDialog = () => {
                 </Select>
               </FormControl>
               <FormMessage />
+
+              {/* Show input when "Other" is selected */}
+              {field.value === "other" && (
+                <FormField
+                  name="customWorkType"
+                  control={form.control}
+                  render={({ field }) => (
+                    <FormItem className="pt-2">
+                      <FormLabel>{t`Specify Other Work Type`}</FormLabel>
+                      <FormControl>
+                        <Input
+                          {...field}
+                          value={typeof field.value === "string" ? field.value : ""}
+                          placeholder={t`Enter custom Work type`}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              )}
             </FormItem>
           )}
         />
@@ -187,8 +224,14 @@ export const ExperienceDialog = () => {
           control={form.control}
           render={({ field }) => (
             <FormItem className="sm:col-span-2">
-              <FormLabel>{t`Company Description`}</FormLabel>({field.value?.length ?? 0} /{" "}
-              {MAX_DESCRIPTION_LENGTH})
+              <FormLabel>
+                <div className="flex w-full items-center justify-between">
+                  <span>{t`Company Description`}</span>
+                  <span className="text-muted-foreground text-sm">
+                    {field.value?.length ?? 0}/{MAX_DESCRIPTION_LENGTH}
+                  </span>
+                </div>
+              </FormLabel>
               <FormControl>
                 <Input
                   {...field}
@@ -248,20 +291,6 @@ export const ExperienceDialog = () => {
         />
 
         <FormField
-          name="tags"
-          control={form.control}
-          render={({ field }) => (
-            <FormItem className="sm:col-span-2">
-              <FormLabel>{t`Tags`}</FormLabel>
-              <FormControl>
-                <Input {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-
-        <FormField
           name="summary"
           control={form.control}
           render={({ field }) => (
@@ -284,6 +313,20 @@ export const ExperienceDialog = () => {
                     field.onChange(value);
                   }}
                 />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          name="tags"
+          control={form.control}
+          render={({ field }) => (
+            <FormItem className="sm:col-span-2">
+              <FormLabel>{t`Tags`}</FormLabel>
+              <FormControl>
+                <Input {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>

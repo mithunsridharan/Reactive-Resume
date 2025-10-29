@@ -320,6 +320,74 @@ msgstr "Columns"
 msgid "Company"
 msgstr "Company"
 
+#: apps/client/src/pages/builder/sidebars/left/dialogs/experience.tsx:128
+msgid "Full-Time"
+msgstr "Full-Time"
+
+#: apps/client/src/pages/builder/sidebars/left/dialogs/experience.tsx:128
+msgid "Part-Time"
+msgstr "Part-Time"
+
+#: apps/client/src/pages/builder/sidebars/left/dialogs/experience.tsx:128
+msgid "Internship"
+msgstr "Internship"
+
+#: apps/client/src/pages/builder/sidebars/left/dialogs/experience.tsx:128
+msgid "Contract"
+msgstr "Contract"
+
+#: apps/client/src/pages/builder/sidebars/left/dialogs/experience.tsx:128
+msgid "Freelance"
+msgstr "Freelance"
+
+#: apps/client/src/pages/builder/sidebars/left/dialogs/experience.tsx:128
+msgid "Temporary"
+msgstr "Temporary"
+
+#: apps/client/src/pages/builder/sidebars/left/dialogs/experience.tsx:128
+msgid "Volunteer"
+msgstr "Volunteer"
+
+#: apps/client/src/pages/builder/sidebars/left/dialogs/experience.tsx:128
+msgid "Not specified"
+msgstr "none"
+
+#: apps/client/src/pages/builder/sidebars/left/dialogs/experience.tsx:158
+msgid "On-Site"
+msgstr "On-Site"
+
+#: apps/client/src/pages/builder/sidebars/left/dialogs/experience.tsx:158
+msgid "Remote"
+msgstr "Remote"
+
+#: apps/client/src/pages/builder/sidebars/left/dialogs/experience.tsx:158
+msgid "Hybrid"
+msgstr "Hybrid"
+
+msgid "Other"
+msgstr "Other"
+
+#: apps/client/src/pages/builder/sidebars/left/dialogs/experience.tsx:158
+msgid "Not specified"
+msgstr "none"
+
+#: apps/client/src/pages/builder/sidebars/left/dialogs/experience.tsx:121
+msgid "Select Employment Type"
+msgstr "Select Employment Type"
+
+#: apps/client/src/pages/builder/sidebars/left/dialogs/experience.tsx:121
+msgid "Employment Type"
+msgstr "Employment Type"
+
+#: apps/client/src/pages/builder/sidebars/left/dialogs/experience.tsx:151
+msgid "Select Work Type"
+msgstr "Select Work Type"
+
+#: apps/client/src/pages/builder/sidebars/left/dialogs/experience.tsx:151
+msgid "Work Type"
+msgstr "Work Type"
+
+
 #: apps/client/src/components/ai-actions.tsx:119
 #: apps/client/src/components/ai-actions.tsx:122
 msgid "Confident"
@@ -418,59 +486,6 @@ msgstr "Date"
 #: apps/client/src/pages/builder/sidebars/left/dialogs/volunteer.tsx:67
 msgid "Date or Date Range"
 msgstr "Date or Date Range"
-
-msgctxt "Type of employment (e.g. Full-Time, Internship)"
-msgid "Employment Type"
-msgstr "Employment Type"
-
-msgctxt "Type of Work (e.g. Onsite, Remote)"
-msgid "Work Type"
-msgstr "Work Type"
-
-msgctxt "Type of Work (e.g. Onsite, Remote)"
-msgid "Full-Time"
-msgstr "Full-Time"
-
-msgctxt "Type of Work (e.g. Onsite, Remote)"
-msgid "Part-Time"
-msgstr "Part-Time"
-
-msgctxt "Type of Work (e.g. Onsite, Remote)"
-msgid "Internship"
-msgstr "Internship"
-
-msgctxt "Type of Work (e.g. Onsite, Remote)"
-msgid "Contract"
-msgstr "Contract"
-
-msgctxt "Type of Work (e.g. Onsite, Remote)"
-msgid "Freelance"
-msgstr "Freelance"
-
-msgctxt "Type of Work (e.g. Onsite, Remote)"
-msgid "Temporary"
-msgstr "Temporary"
-
-msgid "Volunteer"
-msgstr "Volunteer"
-
-msgid "none"
-msgstr "none"
-
-msgid "Overview"
-msgstr "Overview"
-
-msgid "Industries"
-msgstr "Industries"
-
-msgid "Specialities"
-msgstr "Specialities"
-
-msgid "Tags"
-msgstr "Tags"
-
-msgid "Company Description"
-msgstr "Company Description"
 
 #: apps/client/src/pages/builder/sidebars/left/sections/shared/section-dialog.tsx:137
 #: apps/client/src/pages/dashboard/resumes/_dialogs/resume.tsx:158
@@ -1872,3 +1887,18 @@ msgstr "Zoom In"
 #: apps/client/src/pages/builder/_components/toolbar.tsx:118
 msgid "Zoom Out"
 msgstr "Zoom Out"
+
+msgid "Overview"
+msgstr "Overview"
+
+msgid "Industries"
+msgstr "Industries"
+
+msgid "Specialities"
+msgstr "Specialities"
+
+msgid "Tags"
+msgstr "Tags"
+
+msgid "Company Description"
+msgstr "Company Description"

@@ -280,12 +280,28 @@ const Experience = () => {
             className="font-bold"
           />
           <div className="flex items-center gap-2">
-            <div>{item.companyDescription}</div>
             <span>{item.position}</span>
             {item.employmentType && item.employmentType !== "none" && (
               <>
                 <span className="inline-block aspect-square h-1.5 rounded-full bg-black" />
-                <span>{item.employmentType}</span>
+                <span>
+                  {item.employmentType === "other" && item.customEmploymentType
+                    ? item.customEmploymentType
+                    : item.employmentType}{" "}
+                </span>
+              </>
+            )}
+          </div>
+          <div className="flex items-center gap-2 text-sm text-gray-800">
+            <span>{item.location}</span>
+            {item.workType && item.workType !== "none" && (
+              <>
+                <span className="inline-block aspect-square h-1.5 rounded-full bg-black" />
+                <span>
+                  {item.workType === "other" && item.customWorkType
+                    ? item.customWorkType
+                    : item.workType}{" "}
+                </span>
               </>
             )}
           </div>
