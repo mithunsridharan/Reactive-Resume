@@ -64,6 +64,11 @@ const workSchema = z
     name: z.string().optional(),
     position: z.string().optional(),
     summary: z.string().nullable().optional(),
+    companyDescription: z.string().optional(),
+    overview: z.string().optional(),
+    industries: z.array(z.string().nullable()).optional(),
+    specialities: z.array(z.string().nullable()).optional(),
+    tags: z.array(z.string().nullable()).optional(),
   })
   .nullable();
 

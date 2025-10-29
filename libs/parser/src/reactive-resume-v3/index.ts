@@ -101,6 +101,7 @@ export class ReactiveResumeV3Parser implements Parser<Json, ReactiveResumeV3> {
           summary: work.summary ?? "",
           date: `${work.date?.start} - ${work.date?.end}`,
           url: { ...defaultExperience.url, href: isUrl(work.url) ? work.url! : "" },
+          tags: Array.isArray(work.tags) ? (work.tags.filter(Boolean) as string[]) : [],
         });
       }
     }

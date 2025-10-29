@@ -2,6 +2,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { i18n } from "@lingui/core";
 import { t } from "@lingui/macro";
+import { XIcon } from "@phosphor-icons/react";
 import {
   defaultExperience,
   employmentTypeEnum,
@@ -9,7 +10,10 @@ import {
   workTypeEnum,
 } from "@reactive-resume/schema";
 import {
+  Badge,
+  BadgeInput,
   FormControl,
+  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -23,6 +27,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@reactive-resume/ui";
+import { AnimatePresence, motion } from "framer-motion";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import type { z } from "zod";
 
@@ -37,14 +43,42 @@ const MAX_DESCRIPTION_LENGTH = 49;
 
 type FormValues = z.infer<typeof formSchema>;
 
+const handleDragOver = (e: React.DragEvent) => {
+  e.preventDefault();
+};
+
 export const ExperienceDialog = () => {
   const form = useForm<FormValues>({
     defaultValues: defaultExperience,
     resolver: zodResolver(formSchema),
   });
 
+  const [pendingKeyword, setPendingKeyword] = useState("");
+  const [draggedIndex, setDraggedIndex] = useState<number | null>(null);
+
+  const handleDrop = (
+    e: React.DragEvent,
+    dropIndex: number,
+    field: { value: string[]; onChange: (value: string[]) => void },
+  ) => {
+    e.preventDefault();
+    if (draggedIndex === null) return;
+
+    const newItems = [...field.value];
+    const [draggedItem] = newItems.splice(draggedIndex, 1);
+    newItems.splice(dropIndex, 0, draggedItem);
+
+    field.onChange(newItems);
+    setDraggedIndex(null);
+  };
+
   return (
-    <SectionDialog<FormValues> id="experience" form={form} defaultValues={defaultExperience}>
+    <SectionDialog<FormValues>
+      id="experience"
+      form={form}
+      defaultValues={defaultExperience}
+      pendingKeyword={pendingKeyword}
+    >
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <FormField
           name="company"
@@ -100,7 +134,7 @@ export const ExperienceDialog = () => {
             <FormItem>
               <FormLabel>{t`Location`}</FormLabel>
               <FormControl>
-                <Input {...field} />
+                <Input {...field} placeholder={t`Heidelberg, Germany`} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -227,14 +261,14 @@ export const ExperienceDialog = () => {
               <FormLabel>
                 <div className="flex w-full items-center justify-between">
                   <span>{t`Company Description`}</span>
-                  <span className="text-muted-foreground text-sm">
+                  <span>
                     {field.value?.length ?? 0}/{MAX_DESCRIPTION_LENGTH}
                   </span>
                 </div>
               </FormLabel>
               <FormControl>
                 <Input
-                  {...field}
+                  {...field} placeholder={t`Enter a short description about the company`}
                   maxLength={MAX_DESCRIPTION_LENGTH}
                   onChange={(e) => {
                     if (e.target.value.length <= MAX_DESCRIPTION_LENGTH) {
@@ -255,7 +289,7 @@ export const ExperienceDialog = () => {
             <FormItem className="sm:col-span-2">
               <FormLabel>{t`Overview`}</FormLabel>
               <FormControl>
-                <Input {...field} />
+                <Input {...field} placeholder={t`Enter a short overview about this work experience`} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -266,13 +300,50 @@ export const ExperienceDialog = () => {
           name="industries"
           control={form.control}
           render={({ field }) => (
-            <FormItem className="sm:col-span-2">
-              <FormLabel>{t`Industries`}</FormLabel>
-              <FormControl>
-                <Input {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
+            <div className="col-span-2 space-y-3">
+              <FormItem>
+                <FormLabel>{t`Industries`}</FormLabel>
+                <FormControl>
+                  <BadgeInput {...field} setPendingKeyword={setPendingKeyword} />
+                </FormControl>
+                <FormDescription>
+                  {t`You can add multiple industries by separating them with a comma or pressing enter.`}
+                </FormDescription>
+                <FormMessage />
+              </FormItem>
+
+              <div className="flex flex-wrap items-center gap-x-2 gap-y-3">
+                <AnimatePresence>
+                  {field.value.map((item, index) => (
+                    <motion.div
+                      key={item}
+                      layout
+                      draggable
+                      initial={{ opacity: 0, y: -50 }}
+                      animate={{ opacity: 1, y: 0, transition: { delay: index * 0.1 } }}
+                      exit={{ opacity: 0, x: -50 }}
+                      onDragStart={() => {
+                        setDraggedIndex(index);
+                      }}
+                      onDragOver={handleDragOver}
+                      onDrop={(e) => {
+                        handleDrop(e, index, field);
+                      }}
+                    >
+                      <Badge
+                        className="cursor-pointer"
+                        onClick={() => {
+                          field.onChange(field.value.filter((v) => item !== v));
+                        }}
+                      >
+                        <span className="mr-1">{item}</span>
+                        <XIcon size={12} weight="bold" />
+                      </Badge>
+                    </motion.div>
+                  ))}
+                </AnimatePresence>
+              </div>
+            </div>
           )}
         />
 
@@ -280,13 +351,50 @@ export const ExperienceDialog = () => {
           name="specialities"
           control={form.control}
           render={({ field }) => (
-            <FormItem className="sm:col-span-2">
-              <FormLabel>{t`Specialities`}</FormLabel>
-              <FormControl>
-                <Input {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
+            <div className="col-span-2 space-y-3">
+              <FormItem>
+                <FormLabel>{t`Specialities`}</FormLabel>
+                <FormControl>
+                  <BadgeInput {...field} setPendingKeyword={setPendingKeyword} />
+                </FormControl>
+                <FormDescription>
+                  {t`You can add multiple specialities by separating them with a comma or pressing enter.`}
+                </FormDescription>
+                <FormMessage />
+              </FormItem>
+
+              <div className="flex flex-wrap items-center gap-x-2 gap-y-3">
+                <AnimatePresence>
+                  {field.value.map((item, index) => (
+                    <motion.div
+                      key={item}
+                      layout
+                      draggable
+                      initial={{ opacity: 0, y: -50 }}
+                      animate={{ opacity: 1, y: 0, transition: { delay: index * 0.1 } }}
+                      exit={{ opacity: 0, x: -50 }}
+                      onDragStart={() => {
+                        setDraggedIndex(index);
+                      }}
+                      onDragOver={handleDragOver}
+                      onDrop={(e) => {
+                        handleDrop(e, index, field);
+                      }}
+                    >
+                      <Badge
+                        className="cursor-pointer"
+                        onClick={() => {
+                          field.onChange(field.value.filter((v) => item !== v));
+                        }}
+                      >
+                        <span className="mr-1">{item}</span>
+                        <XIcon size={12} weight="bold" />
+                      </Badge>
+                    </motion.div>
+                  ))}
+                </AnimatePresence>
+              </div>
+            </div>
           )}
         />
 
@@ -323,13 +431,50 @@ export const ExperienceDialog = () => {
           name="tags"
           control={form.control}
           render={({ field }) => (
-            <FormItem className="sm:col-span-2">
-              <FormLabel>{t`Tags`}</FormLabel>
-              <FormControl>
-                <Input {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
+            <div className="col-span-2 space-y-3">
+              <FormItem>
+                <FormLabel>{t`Tags`}</FormLabel>
+                <FormControl>
+                  <BadgeInput {...field} setPendingKeyword={setPendingKeyword} />
+                </FormControl>
+                <FormDescription>
+                  {t`You can add multiple tags by separating them with a comma or pressing enter.`}
+                </FormDescription>
+                <FormMessage />
+              </FormItem>
+
+              <div className="flex flex-wrap items-center gap-x-2 gap-y-3">
+                <AnimatePresence>
+                  {field.value.map((item, index) => (
+                    <motion.div
+                      key={item}
+                      layout
+                      draggable
+                      initial={{ opacity: 0, y: -50 }}
+                      animate={{ opacity: 1, y: 0, transition: { delay: index * 0.1 } }}
+                      exit={{ opacity: 0, x: -50 }}
+                      onDragStart={() => {
+                        setDraggedIndex(index);
+                      }}
+                      onDragOver={handleDragOver}
+                      onDrop={(e) => {
+                        handleDrop(e, index, field);
+                      }}
+                    >
+                      <Badge
+                        className="cursor-pointer"
+                        onClick={() => {
+                          field.onChange(field.value.filter((v) => item !== v));
+                        }}
+                      >
+                        <span className="mr-1">{item}</span>
+                        <XIcon size={12} weight="bold" />
+                      </Badge>
+                    </motion.div>
+                  ))}
+                </AnimatePresence>
+              </div>
+            </div>
           )}
         />
       </div>
